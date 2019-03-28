@@ -37,19 +37,19 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     
 ## FastDfs
 
-参考文档：https://blog.csdn.net/u012979009/article/details/55052318
-1.安装
-https://blog.csdn.net/xifeijian/article/details/385678392
-2.启动 /user/bin
-启动tracker: /usr/local/bin/fdfs_trackerd /etc/fdfs/tracker.conf
-启动storage: /usr/local/bin/fdfs_storaged /etc/fdfs/storage.conf
-3.配置 /etc/fdfs
-4.nginx 源码 fastdfs-nginx-module 模块安装
---prefix=/usr/local/Cellar/nginx/1.15.8 --sbin-path=/usr/local/Cellar/nginx/1.15.8/bin/nginx --with-cc-opt='-I/usr/local/opt/pcre/include -I/usr/local/opt/openssl/include' --with-ld-opt='-L/usr/local/opt/pcre/lib -L/usr/local/opt/openssl/lib' --conf-path=/usr/local/etc/nginx/nginx.conf --pid-path=/usr/local/var/run/nginx.pid --lock-path=/usr/local/var/run/nginx.lock --http-client-body-temp-path=/usr/local/var/run/nginx/client_body_temp --http-proxy-temp-path=/usr/local/var/run/nginx/proxy_temp --http-fastcgi-temp-path=/usr/local/var/run/nginx/fastcgi_temp --http-uwsgi-temp-path=/usr/local/var/run/nginx/uwsgi_temp --http-scgi-temp-path=/usr/local/var/run/nginx/scgi_temp --http-log-path=/usr/local/var/log/nginx/access.log --error-log-path=/usr/local/var/log/nginx/error.log --with-debug --with-http_addition_module --with-http_auth_request_module --with-http_dav_module --with-http_degradation_module --with-http_flv_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_mp4_module --with-http_random_index_module --with-http_realip_module --with-http_secure_link_module --with-http_slice_module --with-http_ssl_module --with-http_stub_status_module --with-http_sub_module --with-http_v2_module --with-ipv6 --with-mail --with-mail_ssl_module --with-pcre --with-pcre-jit --with-stream --with-stream_realip_module --with-stream_ssl_module --with-stream_ssl_preread_module --add-module=/Users/services/fastdfs-nginx-module/src
-5.数据 /Users/services/data/fastdfs-storage/data
-6.nginx 配置 commonlibFile.conf
-7.建立软连接
-ln -s /home/wwwroot/default/data  /home/wwwroot/default/data/M00
+##### 参考文档：https://blog.csdn.net/u012979009/article/details/55052318
+#####  1.安装
+######  https://blog.csdn.net/xifeijian/article/details/385678392
+#####  2.启动 /user/bin
+######  启动tracker: /usr/local/bin/fdfs_trackerd /etc/fdfs/tracker.conf
+######  启动storage: /usr/local/bin/fdfs_storaged /etc/fdfs/storage.conf
+#####  3.配置 /etc/fdfs
+#####  4.nginx 源码 fastdfs-nginx-module 模块安装
+######  --prefix=/usr/local/Cellar/nginx/1.15.8 --sbin-path=/usr/local/Cellar/nginx/1.15.8/bin/nginx --with-cc-opt='-I/usr/local/opt/pcre/include -I/usr/local/opt/openssl/include' --with-ld-opt='-L/usr/local/opt/pcre/lib -L/usr/local/opt/openssl/lib' --conf-path=/usr/local/etc/nginx/nginx.conf --pid-path=/usr/local/var/run/nginx.pid --lock-path=/usr/local/var/run/nginx.lock --http-client-body-temp-path=/usr/local/var/run/nginx/client_body_temp --http-proxy-temp-path=/usr/local/var/run/nginx/proxy_temp --http-fastcgi-temp-path=/usr/local/var/run/nginx/fastcgi_temp --http-uwsgi-temp-path=/usr/local/var/run/nginx/uwsgi_temp --http-scgi-temp-path=/usr/local/var/run/nginx/scgi_temp --http-log-path=/usr/local/var/log/nginx/access.log --error-log-path=/usr/local/var/log/nginx/error.log --with-debug --with-http_addition_module --with-http_auth_request_module --with-http_dav_module --with-http_degradation_module --with-http_flv_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_mp4_module --with-http_random_index_module --with-http_realip_module --with-http_secure_link_module --with-http_slice_module --with-http_ssl_module --with-http_stub_status_module --with-http_sub_module --with-http_v2_module --with-ipv6 --with-mail --with-mail_ssl_module --with-pcre --with-pcre-jit --with-stream --with-stream_realip_module --with-stream_ssl_module --with-stream_ssl_preread_module --add-module=/Users/services/fastdfs-nginx-module/src
+#####  5.数据 /Users/services/data/fastdfs-storage/data
+#####  6.nginx 配置 commonlibFile.conf
+#####  7.建立软连接
+######  ln -s /home/wwwroot/default/data  /home/wwwroot/default/data/M00
 
 ## Elasticsearch
 
