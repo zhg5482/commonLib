@@ -37,7 +37,7 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     
 ## FastDfs
 
-##### 参考文档：https://blog.csdn.net/u012979009/article/details/55052318
+#####  参考文档：https://blog.csdn.net/u012979009/article/details/55052318
 #####  1.安装
 ######  https://blog.csdn.net/xifeijian/article/details/385678392
 #####  2.启动 /user/bin
@@ -53,26 +53,23 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 ## Elasticsearch
 
-1.安装
-brew install elasticsearch
-参考：https://blog.csdn.net/u014082714/article/details/86409774
-2.composer api库
-{
-    "require": {
-        "elasticsearch/elasticsearch": "~6.0"
-    }
-}
-参考：https://www.elastic.co/guide/cn/elasticsearch/php/current/_quickstart.html
-3.实例化一个客户端 
-require 'vendor/autoload.php';
-
-use Elasticsearch\ClientBuilder;
-
-$client = ClientBuilder::create()->build();
-4.安装elasticsearch-head插件
-    安装 node   
-        brew install node
-    下载插件并安装
+#####   1.安装
+######  brew install elasticsearch
+######  参考：https://blog.csdn.net/u014082714/article/details/86409774
+#####   2.composer api库
+######  {
+######    "require": {
+######        "elasticsearch/elasticsearch": "~6.0"
+######     }
+######  }
+#####   参考：https://www.elastic.co/guide/cn/elasticsearch/php/current/_quickstart.html
+#####   3.实例化一个客户端 
+######  use Elasticsearch\ClientBuilder;
+######  $client = ClientBuilder::create()->build();
+#####   4.安装elasticsearch-head插件
+######    安装 node   
+######        brew install node
+######    下载插件并安装
         git clone git://github.com/mobz/elasticsearch-head.git
         cd elasticsearch-head
         npm install
@@ -113,9 +110,9 @@ $client = ClientBuilder::create()->build();
         Plugins: /usr/local/opt/elasticsearch/libexec/plugins/
         Config:  /usr/local/etc/elasticsearch/
         plugin script: /usr/local/opt/elasticsearch/libexec/bin/elasticsearch-plugin
-注：先启动 es  ./elasticsearch  再启动 elasticsearch-head    ../elasticsearch-head/node_modules/grunt/bin/grunt server
-elasticsearch-head:http://localhost:9100/ .  elasticsearch:http://localhost:9200/
-参考文档：https://elasticsearch.cn/book/elasticsearch_definitive_guide_2.x/
-5.logstash 同步mysql数据到elasticsearch
-6.lib/elasticSearch
+#####   注：先启动 es  ./elasticsearch  再启动 elasticsearch-head    ../elasticsearch-head/node_modules/grunt/bin/grunt server
+#####       elasticsearch-head:http://localhost:9100/ .  elasticsearch:http://localhost:9200/
+#####   参考文档：https://elasticsearch.cn/book/elasticsearch_definitive_guide_2.x/
+#####   5.logstash 同步mysql数据到elasticsearch
+#####   6.lib/elasticSearch
 
