@@ -20,10 +20,11 @@ If you discover a security vulnerability within Lumen, please send an e-mail to 
 
 The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-# commonLib
+## commonLib
 
-# nginx
-# rabbitMq
+## nginx
+
+## rabbitMq
 
 参考文档 https://www.rabbitmq.com/
 1.安装
@@ -33,7 +34,8 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 "require": {
         "php-amqplib/php-amqplib": "2.6.*"
     },
-#FastDfs
+    
+## FastDfs
 
 参考文档：https://blog.csdn.net/u012979009/article/details/55052318
 1.安装
@@ -48,7 +50,8 @@ https://blog.csdn.net/xifeijian/article/details/385678392
 6.nginx 配置 commonlibFile.conf
 7.建立软连接
 ln -s /home/wwwroot/default/data  /home/wwwroot/default/data/M00
-#Elasticsearch
+
+## Elasticsearch
 
 1.安装
 brew install elasticsearch
