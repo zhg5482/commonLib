@@ -21,9 +21,9 @@ If you discover a security vulnerability within Lumen, please send an e-mail to 
 The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## commonLib
-
+    公共库
 ## nginx
-
+    配置文件 根目录 *.conf
 ## rabbitMq
 
 ##### 参考文档 https://www.rabbitmq.com/
