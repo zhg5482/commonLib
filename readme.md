@@ -24,6 +24,7 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 # nginx
 # rabbitMq
+
 参考文档 https://www.rabbitmq.com/
 1.安装
     brew install rabbitmq
@@ -33,6 +34,7 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
         "php-amqplib/php-amqplib": "2.6.*"
     },
 #FastDfs
+
 参考文档：https://blog.csdn.net/u012979009/article/details/55052318
 1.安装
 https://blog.csdn.net/xifeijian/article/details/385678392
@@ -47,6 +49,7 @@ https://blog.csdn.net/xifeijian/article/details/385678392
 7.建立软连接
 ln -s /home/wwwroot/default/data  /home/wwwroot/default/data/M00
 #Elasticsearch
+
 1.安装
 brew install elasticsearch
 参考：https://blog.csdn.net/u014082714/article/details/86409774
@@ -113,5 +116,3 @@ elasticsearch-head:http://localhost:9100/ .  elasticsearch:http://localhost:9200
 5.logstash 同步mysql数据到elasticsearch
 6.lib/elasticSearch
 
-
-# commonLib
