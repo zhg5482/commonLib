@@ -40,10 +40,25 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 #####  参考文档：https://blog.csdn.net/u012979009/article/details/55052318
 #####  1.安装
       https://blog.csdn.net/xifeijian/article/details/385678392
-#####  2.启动 /user/bin
+#####  2.配置 /etc/fdfs
+        tracker.conf
+            base_path，改为自己的工作目录。
+        storage.conf[可配置多个 例如 storage-test.conf、storage-prod.conf]
+            port，监听端口号
+            base_path，改为自己的工作目录
+            store_path_count，如果多目录这里可以改
+            store_path1，如果多目录这里数字可以往后排
+            tracker_server，tracker服务器的地址和端口号
+            group_name，这里是组名，用于在上传和下载的时候区分不同的组。
+        mod_fastdfs.conf
+            base_path，工作目录
+            tracker_server，tracker服务器地址
+            group_name，如果是多个groupName，所以用斜线分隔开，例如：test/prod
+            group_count，两个组，所以这里是2
+            然后配置区分两个组的地方
+#####  3.启动 /user/bin
       启动tracker: /usr/local/bin/fdfs_trackerd /etc/fdfs/tracker.conf
-      启动storage: /usr/local/bin/fdfs_storaged /etc/fdfs/storage.conf
-#####  3.配置 /etc/fdfs
+      启动storage: /usr/local/bin/fdfs_storaged /etc/fdfs/storage.conf      
 #####  4.nginx 源码 fastdfs-nginx-module 模块安装
       --prefix=/usr/local/Cellar/nginx/1.15.8 --sbin-path=/usr/local/Cellar/nginx/1.15.8/bin/nginx --with-cc-opt='-I/usr/local/opt/pcre/include -I/usr/local/opt/openssl/include' --with-ld-opt='-L/usr/local/opt/pcre/lib -L/usr/local/opt/openssl/lib' --conf-path=/usr/local/etc/nginx/nginx.conf --pid-path=/usr/local/var/run/nginx.pid --lock-path=/usr/local/var/run/nginx.lock --http-client-body-temp-path=/usr/local/var/run/nginx/client_body_temp --http-proxy-temp-path=/usr/local/var/run/nginx/proxy_temp --http-fastcgi-temp-path=/usr/local/var/run/nginx/fastcgi_temp --http-uwsgi-temp-path=/usr/local/var/run/nginx/uwsgi_temp --http-scgi-temp-path=/usr/local/var/run/nginx/scgi_temp --http-log-path=/usr/local/var/log/nginx/access.log --error-log-path=/usr/local/var/log/nginx/error.log --with-debug --with-http_addition_module --with-http_auth_request_module --with-http_dav_module --with-http_degradation_module --with-http_flv_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_mp4_module --with-http_random_index_module --with-http_realip_module --with-http_secure_link_module --with-http_slice_module --with-http_ssl_module --with-http_stub_status_module --with-http_sub_module --with-http_v2_module --with-ipv6 --with-mail --with-mail_ssl_module --with-pcre --with-pcre-jit --with-stream --with-stream_realip_module --with-stream_ssl_module --with-stream_ssl_preread_module --add-module=/Users/services/fastdfs-nginx-module/src
 #####  5.数据 /Users/services/data/fastdfs-storage/data
@@ -115,4 +130,8 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 #####   参考文档：https://elasticsearch.cn/book/elasticsearch_definitive_guide_2.x/
 #####   5.logstash 同步mysql数据到elasticsearch
 #####   6.lib/elasticSearch
+
+##logstash
+    caanl 地址 https://github.com/alibaba/canal 
+    logstash 地址 https://www.elastic.co/downloads/logstash
 
