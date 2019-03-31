@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61793a9b4430170b0cc35ec0653c032b",
+    "content-hash": "721a16550d810cf56b3f2799c852855e",
     "packages": [
+        {
+            "name": "breeze2/lumen-swoole-http",
+            "version": "0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/breeze2/lumen-swoole-http.git",
+                "reference": "44a06d7037006548a6a188d105f806541071c5cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/breeze2/lumen-swoole-http/zipball/44a06d7037006548a6a188d105f806541071c5cd",
+                "reference": "44a06d7037006548a6a188d105f806541071c5cd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-swoole": ">=1.9.0",
+                "laravel/lumen-framework": ">=5.5.0",
+                "perftools/xhgui-collector": "^1.5",
+                "php": ">=7.0.0"
+            },
+            "bin": [
+                "bin/swoole-http"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BL\\SwooleHttp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "breezelin",
+                    "email": "805511939@qq.com"
+                }
+            ],
+            "description": "lumen swoole http server",
+            "keywords": [
+                "coroutine",
+                "lumen",
+                "performance",
+                "swoole",
+                "yield"
+            ],
+            "time": "2018-03-19T03:24:37+00:00"
+        },
         {
             "name": "doctrine/inflector",
             "version": "v1.3.0",
@@ -2029,6 +2078,50 @@
                 "serialize"
             ],
             "time": "2019-02-22T10:30:00+00:00"
+        },
+        {
+            "name": "perftools/xhgui-collector",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/perftools/xhgui-collector.git",
+                "reference": "0d0e01049121b3d64f02c135d738bee70d7a52ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/perftools/xhgui-collector/zipball/0d0e01049121b3d64f02c135d738bee70d7a52ec",
+                "reference": "0d0e01049121b3d64f02c135d738bee70d7a52ec",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "alcaeus/mongo-php-adapter": "Mongo PHP Adapter is required for PHP >7 (when using ext-mongodb)",
+                "ext-curl": "You need to install the curl extension to upload saved files",
+                "ext-mongo": "Mongo is needed to store profiler results for PHP < 7.",
+                "ext-mongodb": "Mongo is needed to store profiler results for PHP > 7.",
+                "ext-uprofiler": "You need to install either xhprof or uprofiler to use XHGui.",
+                "ext-xhprof": "You need to install either xhprof or uprofiler to use XHGui."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Xhgui_": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lauri Piisang",
+                    "email": "lauri.piisang@eesti.ee"
+                }
+            ],
+            "description": "Library for collecting and storing XHProf results for later use by XHGUI.",
+            "time": "2019-03-27T11:24:40+00:00"
         },
         {
             "name": "php-amqplib/php-amqplib",

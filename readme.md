@@ -20,10 +20,22 @@ If you discover a security vulnerability within Lumen, please send an e-mail to 
 
 The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## 中文文档
+    https://learnku.com/docs/lumen/5.7
 ## commonLib
     公共库
 ## nginx
     配置文件 根目录 *.conf
+    
+## serviceId 生成规则
+    app/helpers.php makeServiceId()
+
+## verificationSign 签名验证
+    app/helpers.php verificationSign()
+
+## throttle 访问频次控制
+    App\Http\Middleware\ThrottleRequests.php
+
 ## rabbitMq
 
 ##### 参考文档 https://www.rabbitmq.com/
@@ -40,6 +52,7 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 #####  参考文档：https://blog.csdn.net/u012979009/article/details/55052318
 #####  1.安装
+      php扩展 ： fastdfs_client.so
       https://blog.csdn.net/xifeijian/article/details/385678392
 #####  2.配置 /etc/fdfs
         tracker.conf
@@ -132,12 +145,20 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 #####   5.logstash 同步mysql数据到elasticsearch
 #####   6.lib/elasticSearch
 
+## swoole 
+    php 扩展安装 swoole.so
+    文档：
+        https://wiki.swoole.com/
+    lumen-swoole 文档:
+        https://breeze2.github.io/lumen-swoole-http/#/?id=lumen-swoole-http
+        
 ## logstash
 
     caanl 地址 https://github.com/alibaba/canal 
     logstash 地址 https://www.elastic.co/downloads/logstash
     
 ## grpc 
+    php 扩展安装 grpc.so
     官网 ：https://grpc.io/
     中文文档 ： http://doc.oschina.net/grpc?t=57966
     "require": {
@@ -148,12 +169,6 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 ## ffmpeg
     官方文档 ： http://ffmpeg.org/
     
-## serviceId 生成规则
-    app/helpers.php makeServiceId()
 
-## verificationSign 签名验证
-    app/helpers.php verificationSign()
-
-## throttle 访问频次控制
-    App\Http\Middleware\ThrottleRequests.php
+    
 
