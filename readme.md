@@ -169,6 +169,8 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 ## ffmpeg
     官方文档 ： http://ffmpeg.org/
     
-
+## supervisor 进程监控
+    官方文档 ： http://supervisord.org/
+    
     
 
