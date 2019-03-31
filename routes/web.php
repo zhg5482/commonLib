@@ -15,12 +15,9 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-
 /**
- *  api 接口 路由 中间件  signVerification
+ * 版本 v1路由
  */
-$router->group(['middleware' => 'signVerification'], function () use ($router) {
-    $router->post('index', [
-        'as' => 'index', 'uses' => 'ExampleController@index'
-    ]);
+$router->group(['prefix'=>'api/v1'], function () use ($router) {
+    require __DIR__.'/../routes/v1.php';
 });

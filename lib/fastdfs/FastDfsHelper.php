@@ -1,5 +1,5 @@
 <?php
-namespace Lib\FastDfs;
+namespace App\Lib\FastDfs;
 /**
  * Class FastDfsHelper
  * @package Lib

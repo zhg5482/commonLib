@@ -5,7 +5,7 @@
  * Date: 2019/3/27
  * Time: 下午10:15
  */
-namespace Lib\ElasticSearch;
+namespace App\Lib\ElasticSearch;
 
 use Elasticsearch\ClientBuilder;
 

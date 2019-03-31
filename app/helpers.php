@@ -499,3 +499,46 @@ function getSuffix($fileName)
  preg_match('/\.(\w+)?$/', $fileName, $matchs);
  return isset($matchs[1])?$matchs[1]:'';
 }
+
+/**
+ * 接口签名
+ * @param $params
+ * @param $token
+ * @param $ignore_fields
+ * @return bool
+ */
+function verificationSign($params,$token,$ignore_fields)
+{
+    $secret = md5($token);
+    $str = '';
+    $sign = $params['sign'];
+    unset($params['sign']);
+    ksort($params);
+    foreach($params as $k => $v){
+        if (!in_array($k,$ignore_fields))
+        {
+            continue;
+        }
+        $str .= $k.'='.$v.'&';
+    }
+    $str = $str.$secret;
+    return $sign == md5($str);
+}
+
+/**
+ * serviceId
+ * @param string $cert
+ * @param string $delimiter
+ * @param int $delimiter_length
+ * @return string
+ */
+function makeServiceId($cert = '',$delimiter = '-',$delimiter_length = 8)
+{
+    $cert = empty($cert) ? time().uniqid() : removeStrSpace($cert);
+    $str = '';
+    $md5 = md5($cert);
+    for ($i = 0; $i < strlen($md5);$i=$i+$delimiter_length) {
+        $str .= substr($md5,$i,$delimiter_length).$delimiter;
+    }
+    return trim($str,$delimiter);
+}

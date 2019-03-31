@@ -24,9 +24,10 @@ $app = new Laravel\Lumen\Application(
 $app->withFacades();
 $app->withEloquent();
 
-$app->configure('app');
+//加载配置
 $app->configure('app');
 $app->configure('database');
+$app->configure('queue');
 $app->configure('apiService');
 $app->configure('elasticsearch');
 
@@ -71,6 +72,7 @@ $app->singleton(
 // ]);
 $app->routeMiddleware([
     'signVerification' => App\Http\Middleware\SignVerification::class,
+    'throttle' => App\Http\Middleware\ThrottleRequests::class,
 ]);
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +88,8 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
+$app->register(Wn\Generators\CommandsServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -97,10 +100,6 @@ $app->routeMiddleware([
 | can respond to, as well as the controllers that may handle them.
 |
 */
-$app->register(Illuminate\Redis\RedisServiceProvider::class);
-$app->register(Wn\Generators\CommandsServiceProvider::class);
-
-
 $app->router->group(['namespace' => 'App\Http\Controllers',], function ($router) {
     require __DIR__.'/../routes/web.php';
 });

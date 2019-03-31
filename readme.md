@@ -34,7 +34,8 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     "require": {
         "php-amqplib/php-amqplib": "2.6.*"
     }
-        
+##### 4.配置 config/queue.php
+   
 ## FastDfs
 
 #####  参考文档：https://blog.csdn.net/u012979009/article/details/55052318
@@ -135,4 +136,20 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
     caanl 地址 https://github.com/alibaba/canal 
     logstash 地址 https://www.elastic.co/downloads/logstash
+    
+## grpc 
+    官网 ：https://grpc.io/
+    中文文档 ： http://doc.oschina.net/grpc?t=57966
+    
+## ffmpeg
+    官方文档 ： http://ffmpeg.org/
+    
+## serviceId 生成规则
+    app/helpers.php makeServiceId()
+
+## verificationSign 签名验证
+    app/helpers.php verificationSign()
+
+## throttle 访问频次控制
+    App\Http\Middleware\ThrottleRequests.php
 

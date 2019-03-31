@@ -7,11 +7,17 @@ use Closure;
 class signVerification
 {
     /**
-     * verification fields
-     * @var array
+     * @var \Illuminate\Config\Repository|mixed
      */
-    private $verification_fields = array('serviceId','search_type','user_id');
-    private $ignore_api = array('black_list');
+    public $apiServiceConfig;
+
+    /**
+     * signVerification constructor.
+     */
+    public function __construct()
+    {
+        $this->apiServiceConfig = config('apiService');
+    }
 
     /**
      * Handle an incoming request.
@@ -22,63 +28,42 @@ class signVerification
      */
     public function handle($request, Closure $next)
     {
-        $route = $request->route();
-        $request_url = $route[1]['as'];
+        $route = $request->path();
 
-        if (in_array($request_url,$this->ignore_api))
+        if (in_array($route,$this->apiServiceConfig['ignore_api']))
         {
             return $next($request);
         }
-        $apiServiceConf = config('apiService');
-        if (!$this->requestLimit($request_url,$request,$apiServiceConf))
+
+        if (!$this->requestLimit($route,$request))
         {
-            //echoToJson('No authority',array());
+            echoToJson('No authority',array());
         }
         return $next($request);
     }
+
     /**
-     * request verification
+     * 签名验证
+     * @param $request_url
      * @param $request
-     * @param $serviceId_mapping
      * @return bool
      */
-    public function requestLimit($request_url,$request,$apiServiceConf)
+    public function requestLimit($request_url,$request)
     {
         $params = $request->input();
         if (empty($params) || !isset($params['sign']))
         {
             return false;
         }
-        if (!isset($params['serviceId']) || !in_array($params['serviceId'],array_keys($apiServiceConf['serviceId_mapping'])) ||
-            !in_array($request_url,$apiServiceConf['serviceId_mapping'][$params['serviceId']]))
+        if (!isset($params['serviceId']) || !in_array($params['serviceId'],array_keys($this->apiServiceConfig['serviceId_mapping'])) ||
+            !in_array($request_url,$this->apiServiceConfig['serviceId_mapping'][$params['serviceId']]))
         {
             return false;
         }
-        if (!$this->verificationSign($params,$apiServiceConf['api_token']))
+        if (!verificationSign($params,$this->apiServiceConfig['api_token'],$this->apiServiceConfig['ignore_verification_fields']))
         {
-            return false;
+            //return false;
         }
         return true;
-    }
-    /**
-     * @param $params
-     * @return bool
-     */
-    public function verificationSign($params,$token)
-    {
-        $secret = md5($token);
-        $str = '';
-        $sign = $params['sign'];
-        unset($params['sign']);
-        ksort($params);
-        foreach($params as $k => $v){
-            if (!in_array($k,$this->verification_fields))
-            {
-                continue;
-            }
-            $str .= $k.'='.$v.'&';
-        }
-        $str = $str.$secret;
-        return $sign == md5($str);
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
-use Lib\ElasticSearch\Es;
-use Lib\FastDfs\FastDfsHelper;
+use App\Lib\ElasticSearch\Es;
+use App\Lib\FastDfs\FastDfsHelper;
 
 class ExampleController extends Controller
 {
@@ -21,7 +21,19 @@ class ExampleController extends Controller
     //
     public function index() {
 
-        $this->fastDfsTest();
+
+    }
+
+    public function throttleTest() {
+        echo "throttleTest";
+    }
+
+    /**
+     * 生成serviceID
+     * @return string
+     */
+    public function makeServiceId() {
+        return makeServiceId();
     }
 
     /**
@@ -33,8 +45,9 @@ class ExampleController extends Controller
         if (!$ret) {
             echoToJson('error',array());
         }
-        echo config('app')['fileUrl'].'/'.$ret['group_name'].'/'.$ret['filename'];
+        return config('app')['fileUrl'].'/'.$ret['group_name'].'/'.$ret['filename'];
     }
+
     /**
      * redis test
      * @return mixed
@@ -43,6 +56,7 @@ class ExampleController extends Controller
         Redis::setex('site_name', 10, 'Lumen的redis');
         return Redis::type('site_name');
     }
+
     /**
      * db test
      */

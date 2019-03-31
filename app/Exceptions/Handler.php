@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,11 +49,17 @@ class Handler extends ExceptionHandler
     {
 
         if ($exception instanceof MethodNotAllowedHttpException) {
-            echoToJson('Incorrect access',array());
+            echoToJson('Request was aborted',array());
         }
+
         if($exception instanceof \Symfony\Component\Debug\Exception\FatalErrorException && !config('app.debug')) {//加上app.debug防止dubug关闭模式下暴露重要信息
-            echoToJson('Incorrect access',array());
+            echoToJson('Request was aborted',array());
         }
+
+        if ($exception instanceof NotFoundHttpException) {
+            echoToJson('NotFound httpException',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
+        }
+
         if ($exception instanceof HttpException) {
             $code = $exception->getStatusCode();
             if (view()->exists('errors.' . $code)) {
@@ -60,12 +67,21 @@ class Handler extends ExceptionHandler
                 return response()->view('errors.' . $exception->getStatusCode(), ['message'=>$message], $exception->getStatusCode());
             }
         }
-        if ($exception instanceof ModelNotFoundException)
-        {
-            echoToJson('Incorrect access',array());
+
+        if ($exception instanceof ModelNotFoundException)  {
+            echoToJson('Request was aborted',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
         }
-        if ($exception instanceof \ErrorException){
-            echoToJson('Parameter error',array());
+
+        if ($exception instanceof \ErrorException) {
+            echoToJson('Parameter deletion',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
+        }
+
+        if ($exception instanceof ThrottleException) {
+            echoToJson('No authority',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
+        }
+
+        if ($exception->getStatusCode() != 200) {
+            echoToJson('No authority',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
         }
         return parent::render($request, $exception);
     }

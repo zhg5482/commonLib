@@ -91,4 +91,27 @@ return [
         'table'    => env('QUEUE_FAILED_TABLE', 'failed_jobs'),
     ],
 
+    /**
+     * RabbitMq Queue
+     */
+    'rabbitmq' => [
+        'server' => [
+            [
+                'host'      => 'localhost',
+                'port'      => '5672',
+                'user'      => 'guest',
+                'pass'      => 'guest',
+                'vhost'     => '/',
+            ],
+        ],
+
+        'info'  => [
+            'test'  =>
+                [
+                    'queueKey'  => 'zhg5482.test',
+                    'exchange'  => 'zhg5482.test',
+                    'durable'   =>  true,
+                ]
+        ]
+    ],
 ];
