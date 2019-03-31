@@ -140,6 +140,10 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 ## grpc 
     官网 ：https://grpc.io/
     中文文档 ： http://doc.oschina.net/grpc?t=57966
+    "require": {
+            "grpc/grpc": "^1.6",
+            "google/protobuf": "v3.5.0.1"
+    }
     
 ## ffmpeg
     官方文档 ： http://ffmpeg.org/
