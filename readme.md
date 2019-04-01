@@ -168,6 +168,11 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     
 ## ffmpeg
     官方文档 ： http://ffmpeg.org/
+    mac 安装： brew install ffmpeg
+    php composer 安装 composer require php-ffmpeg/php-ffmpeg
+    参考文档 : https://www.cnblogs.com/peteremperor/p/6477743.html
+                 
+
     
 ## supervisor 进程监控
     官方文档 ： http://supervisord.org/

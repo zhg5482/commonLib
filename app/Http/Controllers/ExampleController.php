@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Lib\FFmPeg\FFmPegHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use App\Lib\ElasticSearch\Es;
@@ -33,9 +34,15 @@ class ExampleController extends Controller
      * @return string
      */
     public function makeServiceId() {
-        return makeServiceId();
+
     }
 
+    /**
+     * ffmpeg 测试
+     */
+    public function ffmPegTest() {
+         FFmPegHelper::getInstance()->audioTransform();
+    }
     /**
      * fastdfs上传
      */

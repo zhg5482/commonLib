@@ -542,3 +542,16 @@ function makeServiceId($cert = '',$delimiter = '-',$delimiter_length = 8)
     }
     return trim($str,$delimiter);
 }
+
+/**
+ * 获取文件后缀
+ * @param $fileName
+ * @return mixed
+ */
+function getFilePathInfo($fileName)
+{
+    $fileInfo = parse_url($fileName);
+    $result = pathinfo($fileInfo['path']);
+    return $result;
+}
+
