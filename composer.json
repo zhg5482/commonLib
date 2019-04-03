@@ -11,6 +11,7 @@
         "google/protobuf": "v3.5.0.1",
         "grpc/grpc": "^1.6",
         "illuminate/redis": "^5.8",
+        "jenssegers/mongodb": "^3.5",
         "laravel/lumen-framework": "5.8.*",
         "php-amqplib/php-amqplib": "2.6.*",
         "php-ffmpeg/php-ffmpeg": "^0.13.0",

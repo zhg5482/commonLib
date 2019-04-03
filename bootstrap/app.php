@@ -22,7 +22,6 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades();
-$app->withEloquent();
 
 //加载配置
 $app->configure('app');
@@ -71,8 +70,8 @@ $app->singleton(
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 $app->routeMiddleware([
-    'signVerification' => App\Http\Middleware\SignVerification::class,
-    'throttle' => App\Http\Middleware\ThrottleRequests::class,
+    'signVerification' => App\Http\Middleware\SignVerification::class,   //接口权限验证
+    'throttle' => App\Http\Middleware\ThrottleRequests::class,  //控制接口访问频次中间件
 ]);
 /*
 |--------------------------------------------------------------------------
@@ -88,8 +87,12 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-$app->register(Illuminate\Redis\RedisServiceProvider::class);
-$app->register(Wn\Generators\CommandsServiceProvider::class);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);   //注册redis
+$app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);  //注册mongodb
+$app->register(Wn\Generators\CommandsServiceProvider::class); //增加artisan命令
+
+$app->withEloquent();
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

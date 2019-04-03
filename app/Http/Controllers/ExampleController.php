@@ -22,7 +22,7 @@ class ExampleController extends Controller
     //
     public function index() {
 
-
+        $this->mongodbTest();
     }
 
     public function throttleTest() {
@@ -34,7 +34,19 @@ class ExampleController extends Controller
      * @return string
      */
     public function makeServiceId() {
+        return makeServiceId('api/vi/test');
+    }
 
+    /**
+     * mongodb 测试
+     */
+    public function mongodbTest() {
+        $mongodb = DB::connection('mongodb');  // 获得mongodb的连接
+        $db = $mongodb->collection('news');    // 连接user数据库
+        //$res = $db->where('new_from_url','cctv.com')->get();
+        $res = $db->where('new_from_url','cctv.com')->skip(0)->take(5)->get(); //跳过 2 个 获得 5 个
+        var_dump($res);
+        //echoToJson('Request success',$res);
     }
 
     /**
@@ -43,6 +55,7 @@ class ExampleController extends Controller
     public function ffmPegTest() {
          FFmPegHelper::getInstance()->audioTransform();
     }
+
     /**
      * fastdfs上传
      */

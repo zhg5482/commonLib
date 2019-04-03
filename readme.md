@@ -36,6 +36,14 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 ## throttle 访问频次控制
     App\Http\Middleware\ThrottleRequests.php
 
+## redis 
+    php 扩展安装
+    composer predis/predis 安装vender包
+    
+## mongodb
+    mongo 扩展安装
+    composer jenssegers/mongodb 安装vender包
+    参考 ： http://returnc.com/detail/3728
 ## rabbitMq
 
 ##### 参考文档 https://www.rabbitmq.com/
