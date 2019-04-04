@@ -71,7 +71,7 @@ return [
                 'port' => '3306',
             ],
             'driver'    => 'mysql',
-            'database'  => 'test',
+            'database'  => 'news',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

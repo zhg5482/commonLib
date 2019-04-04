@@ -6,7 +6,7 @@ return[
     /**
      * 忽略验证路由
      */
-    'ignore_api' => array('black_list'),
+    'ignore_api' => array('api/v1/index','api/v1/channel','api/v1/channelType','api/v1/channelSearch'),
 
     /**
      * 忽略签名验证字段
@@ -17,7 +17,7 @@ return[
      * serviceId_mapping[serviceId => request_url]
      */
     'serviceId_mapping' => array(
-        '692bb073-fa02d931-7b8cd4ce-b6f5d244' => array('api/v1/index'),
+        '692bb073-fa02d931-7b8cd4ce-b6f5d244' => array('api/v1/index','api/v1/channel','api/v1/channelType','api/v1/channelSearch'),
         'id2' => array('url2'),
         'id3' => array('url3'),
     ),

@@ -450,7 +450,7 @@ function echoToJson($code,$data)
     }
     $code = $apiService['code'][$code];
     $meg = $apiService['code_message'][$code];
-    echo json_encode(array('code'=>$code,'message'=>$meg,'data'=>$data)); exit;
+    echo json_encode(array('code'=>$code,'message'=>$meg,'result'=>$data)); exit;
 }
 
 /**

@@ -1,8 +1,9 @@
 <?php
-namespace App\Lib\mongodb;
+namespace App\Lib\MongoDb;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Self_;
 
-class MongodbHelper
+class MongoDbHelper
 {
     /**
      * @var 连接
@@ -15,7 +16,7 @@ class MongodbHelper
     public $table;
 
     /**
-     * MongodbHelper constructor.
+     * MongoDbHelper constructor.
      */
     public function __construct() {}
 
@@ -23,7 +24,7 @@ class MongodbHelper
      * @return 连接|\Illuminate\Database\ConnectionInterface
      */
     public static function getInstance() {
-        if (null == self::getInstance()) {
+        if (! self::$_conn ) {
             self::$_conn = DB::connection('mongodb');
         }
         return self::$_conn;

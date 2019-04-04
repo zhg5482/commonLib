@@ -9,7 +9,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Lib\RabbitMq\TestRabbitQueue;
+use App\Lib\RabbitMq\TestRabbitQueue;
 
 class TestMqCommand extends Command
 {

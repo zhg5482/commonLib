@@ -30,11 +30,6 @@ class signVerification
     {
         $route = $request->path();
 
-        if (in_array($route,$this->apiServiceConfig['ignore_api']))
-        {
-            return $next($request);
-        }
-
         if (!$this->requestLimit($route,$request))
         {
             echoToJson('No authority',array());
@@ -50,19 +45,29 @@ class signVerification
      */
     public function requestLimit($request_url,$request)
     {
+        //serviceId 验证
         $params = $request->input();
-        if (empty($params) || !isset($params['sign']))
+        if (empty($params))
         {
             return false;
         }
+
         if (!isset($params['serviceId']) || !in_array($params['serviceId'],array_keys($this->apiServiceConfig['serviceId_mapping'])) ||
             !in_array($request_url,$this->apiServiceConfig['serviceId_mapping'][$params['serviceId']]))
         {
             return false;
         }
+        //忽略sign验证
+        if (in_array($request_url,$this->apiServiceConfig['ignore_api'])) {
+            return true;
+        }
+        //sign验证
+        if (!isset($params['sign'])) {
+            return false;
+        }
         if (!verificationSign($params,$this->apiServiceConfig['api_token'],$this->apiServiceConfig['ignore_verification_fields']))
         {
-            //return false;
+            return false;
         }
         return true;
     }

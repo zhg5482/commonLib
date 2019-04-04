@@ -10,6 +10,11 @@ use App\Lib\FastDfs\FastDfsHelper;
 class ExampleController extends Controller
 {
     /**
+     * @var int
+     */
+    private $page_num = 20;
+
+    /**
      * Create a new controller instance.
      *
      * @return void

@@ -23,3 +23,15 @@ $router->group(['middleware' => ['throttle:10,1']],function() use ($router){
     $router->get('throttleTest','ExampleController@throttleTest');
 
 });
+
+
+/**
+ * 新闻消息接口
+ */
+$router->group(['middleware' => ['throttle:20,1','signVerification']],function() use ($router){
+
+    $router->get('channel','NewsController@channel');   //  渠道接口
+    $router->get('channelType','NewsController@channelType');   // 类别接口
+    $router->get('channelSearch','NewsController@channelSearch');   //搜素接口
+
+});
