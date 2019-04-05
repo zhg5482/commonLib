@@ -20,7 +20,7 @@ class NewsService {
     /**
      * @var int
      */
-    private $page_num = 20;
+    private $page_num = 30;
 
     /**
      * NewsService constructor.
@@ -45,7 +45,7 @@ class NewsService {
      */
     public function getDataListByChannel($channelType,$page) {
         $skip = (intval($page)-1) * $this->page_num;
-        return MongoDbHelper::getInstance()->table('news')
+        $data = MongoDbHelper::getInstance()->table('news')
             ->select('title','content','detail_url','source_title','channel','channel_id','image','create_time','type')
             ->where('channel',$channelType)
             ->orderBy('create_time','desc')
@@ -53,6 +53,10 @@ class NewsService {
             ->take($this->page_num)
             ->get()
             ->toArray();
+        $res['channel'] = $channelType;
+        $res['num'] = count($data);
+        $res['list'] = $data;
+        return $res;
     }
 
     /**
@@ -62,7 +66,7 @@ class NewsService {
      */
     public function getDataListBySearch($search_key,$page) {
         $skip = (intval($page)-1) * $this->page_num;
-        return MongoDbHelper::getInstance()->table('news')
+        $data = MongoDbHelper::getInstance()->table('news')
             ->select('title','content','detail_url','source_title','channel','channel_id','image','create_time','type')
             ->where('title','like','%'.$search_key.'%')
             ->orderBy('create_time','desc')
@@ -70,5 +74,9 @@ class NewsService {
             ->take($this->page_num)
             ->get()
             ->toArray();
+        $res['keyword'] = $search_key;
+        $res['num'] = count($data);
+        $res['list'] = $data;
+        return $res;
     }
 }
