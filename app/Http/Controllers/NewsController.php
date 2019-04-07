@@ -49,7 +49,7 @@ class NewsController extends Controller
     }
 
     /**
-     * 搜素接口
+     * 搜索接口
      */
     public function channelSearch() {
         $search_key = $this->request->input('search_key','');

@@ -7,7 +7,6 @@
  */
 namespace App\Services;
 
-use App\Lib\MongoDb\MongoDbHelper;
 use App\Models\NewsModel;
 
 class NewsService {
@@ -45,35 +44,21 @@ class NewsService {
      */
     public function getDataListByChannel($channelType,$page) {
         $skip = (intval($page)-1) * $this->page_num;
-        $data = MongoDbHelper::getInstance()->table('news')
-            ->select('title','content','detail_url','source_title','channel','channel_id','image','create_time','type')
-            ->where('channel',$channelType)
-            ->orderBy('create_time','desc')
-            ->skip($skip)
-            ->take($this->page_num)
-            ->get()
-            ->toArray();
+        $data = $this->newsModel->getDataListByChannel($channelType,$skip);
         $res['channel'] = $channelType;
         $res['num'] = count($data);
         $res['list'] = $data;
-        return $res;
+        return $data;
     }
 
     /**
      * @param $search_key
      * @param $page
-     * @return array
+     * @return mixed
      */
     public function getDataListBySearch($search_key,$page) {
         $skip = (intval($page)-1) * $this->page_num;
-        $data = MongoDbHelper::getInstance()->table('news')
-            ->select('title','content','detail_url','source_title','channel','channel_id','image','create_time','type')
-            ->where('title','like','%'.$search_key.'%')
-            ->orderBy('create_time','desc')
-            ->skip($skip)
-            ->take($this->page_num)
-            ->get()
-            ->toArray();
+        $data = $this->newsModel->getDataListBySearch($search_key,$skip);
         $res['keyword'] = $search_key;
         $res['num'] = count($data);
         $res['list'] = $data;

@@ -45,7 +45,6 @@ class FastDfsHelper
                 return false;
             }
         }
-
         return self::$instance;
     }
 
