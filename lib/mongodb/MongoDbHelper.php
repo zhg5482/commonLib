@@ -11,6 +11,11 @@ class MongoDbHelper
     public static $_conn;
 
     /**
+     * @var db
+     */
+    public $db;
+
+    /**
      * @var 表
      */
     public $table;
