@@ -87,7 +87,8 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 #####  6.nginx 配置 commonlibFile.conf
 #####  7.建立软连接
       ln -s /home/wwwroot/default/data  /home/wwwroot/default/data/M00
-
+#####  8.api  https://www.cnblogs.com/xinyaoxp/archive/2013/10/29/3394574.html
+#####  9.多机配置   https://www.cnblogs.com/cpy-devops/p/6105845.html
 ## Elasticsearch
 
 #####   1.安装

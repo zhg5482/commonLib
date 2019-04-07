@@ -10,7 +10,7 @@
  * 中间件 signVerification
  */
 $router->group(['middleware' => 'signVerification'], function () use ($router) {
-    $router->get('index', [
+    $router->post('index', [
         'as' => 'index', 'uses' => 'ExampleController@index'
     ]);
 });

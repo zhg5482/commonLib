@@ -27,7 +27,7 @@ class ExampleController extends Controller
     //
     public function index() {
 
-        $this->mongodbTest();
+        var_dump($this->fastDfsTest());
     }
 
     public function throttleTest() {

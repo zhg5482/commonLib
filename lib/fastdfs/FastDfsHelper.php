@@ -41,20 +41,25 @@ class FastDfsHelper
             if( !self::$instance->_loadTracker() ){
                 return false;
             }
+            if (!self::$instance->storageConnection($group_name)) {
+                return false;
+            }
         }
 
         return self::$instance;
     }
 
     /**
+     * 连接 tracker
      * @return bool
      */
     private function _loadTracker(){
-        $this->_tracker = fastdfs_tracker_get_connection();
+        $this->_tracker = fastdfs_tracker_get_connection(); //获取一个 tracker
         if( !$this->_tracker ){
             return false;
         }
-        if( !fastdfs_active_test($this->_tracker) ){
+
+        if( !fastdfs_active_test($this->_tracker) ){    //测试当前storage的状态
             $this->_setLastError('fastdfs_active_test(_tracker)');
             return false;
         }
@@ -63,6 +68,8 @@ class FastDfsHelper
     }
 
     /**
+     * fastdfs_get_last_error_no 错误记录数
+     * fastdfs_get_last_error_info 错误信息
      * @param string $act
      */
     private function _setLastError( $act = '' ){
@@ -74,7 +81,8 @@ class FastDfsHelper
      * @param string $group_name
      * @return boolean
      */
-    public function storageConnection($group_name = ''){
+    public function storageConnection($group_name){
+
         if( !isset($this->_storage_arr[$group_name]) ){
             $this->_storage_arr[$group_name] = fastdfs_tracker_query_storage_store($group_name, $this->_tracker);
             if( !$this->_storage_arr[$group_name] ){
@@ -120,8 +128,7 @@ class FastDfsHelper
         }else{
             $act = 'fastdfs_storage_upload_by_filename';
         }
-        //$file_info = $act($local_filename, $file_ext_name, array(), null, $this->_tracker, $this->_storage);
-        $file_info = $act($local_filename, $file_ext_name);
+        $file_info = $act($local_filename, $file_ext_name, array(), null, $this->_tracker, $this->_storage);
         if( !$file_info ){
             $this->_setLastError($act.'('.$local_filename.')');
             return false;
@@ -209,5 +216,13 @@ class FastDfsHelper
             $is_file_buff = true;
         }
         return $this->upload($fileContent,$fileSuffix,$is_file_buff);
+    }
+
+    /**
+     * 获取版本
+     * @return mixed
+     */
+    public function getVersion(){
+        return fastdfs_client_version();
     }
 }
