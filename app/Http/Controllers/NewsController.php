@@ -18,13 +18,8 @@ class NewsController extends Controller
      */
     public function __construct(Request $request,NewsService $newService)
     {
-        //
         parent::__construct($request);
         $this->newService = $newService;
-    }
-
-    public function index() {
-
     }
 
     /**
