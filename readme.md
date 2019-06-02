@@ -165,6 +165,8 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     lumen-swoole 文档:
         https://breeze2.github.io/lumen-swoole-http/#/?id=lumen-swoole-http
         
+    rpc 文档：
+        https://wiki.swoole.com/wiki/page/683.html
 ## logstash
 
     caanl 地址 https://github.com/alibaba/canal 
