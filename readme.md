@@ -204,3 +204,6 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     
 ## Socialite 社会化登录
     参考文档 ： https://learnku.com/docs/laravel/5.5/socialite/1347
+    
+## Hprose rpc解决方案
+    官方文档 ： https://hprose.com/
