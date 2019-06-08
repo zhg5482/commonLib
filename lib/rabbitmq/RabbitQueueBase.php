@@ -21,6 +21,7 @@ class RabbitQueueBase
     protected $_durable        = false;
     protected $_exchange_durable = false;
     protected $_no_ack = true;
+    protected $_model = 'fanout';
 
     public function __construct($queueName)
     {
@@ -42,6 +43,9 @@ class RabbitQueueBase
         if(isset($this->queueConf['info'][$queueName]['no_ack'])){
             $this->_no_ack = $this->queueConf['info'][$queueName]['no_ack'];
         }
+        if(isset($this->queueConf['info'][$queueName]['model'])){
+            $this->_no_ack = $this->queueConf['info'][$queueName]['model'];
+        }
         $this->getRandServer();
         $this->connection();
     }
@@ -60,10 +64,10 @@ class RabbitQueueBase
         );
         $this->connection = $connection;
         $this->channel = $connection->channel();
-        $this->channel->exchange_declare($this->exchange, 'fanout', false, $this->_exchange_durable, false);
-        $this->channel->queue_declare($this->queueKey, true, $this->_durable, false, false);
-        $this->channel->basic_qos(null, 1, true);
-        $this->channel->queue_bind($this->queueKey, $this->exchange);
+        $this->channel->exchange_declare($this->exchange, $this->_model, false, $this->_exchange_durable, false);  //声明交换器
+        $this->channel->queue_declare($this->queueKey, true, $this->_durable, false, false); //声明队列
+        $this->channel->basic_qos(null, 1, true);  //设置同事最多处理 1 条请求  在 no_ack == false 下生效  在未接受应答确认之前 不会分发新的消息给消费者
+        $this->channel->queue_bind($this->queueKey, $this->exchange); //绑定队列到交换器上
     }
 
     /**

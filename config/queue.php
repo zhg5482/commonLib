@@ -110,6 +110,13 @@ return [
                 [
                     'queueKey'  => 'zhg5482.test',
                     'exchange'  => 'zhg5482.test',
+                    'durable'   =>  true, //持久化  rabbitmq 重启或奔溃重新创建队列
+                    //'no_ack'    =>  false, //消息确认 默认 true  消费着接受自动删除
+                ],
+            'test2'  =>
+                [
+                    'queueKey'  => 'zhg5482.test2',
+                    'exchange'  => 'zhg5482.test',
                     'durable'   =>  true,
                 ]
         ]
