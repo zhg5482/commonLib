@@ -71,6 +71,7 @@ class RabbitQueueBase
     }
 
     /**
+     * 发布消息
      * @param $arrContent
      * @return mixed
      */
@@ -85,6 +86,7 @@ class RabbitQueueBase
     }
 
     /**
+     * 获取单条消息
      * @param $funcCallback
      */
     public function getOne($funcCallback)
@@ -93,6 +95,7 @@ class RabbitQueueBase
     }
 
     /**
+     * 获得当前队列积压消息数
      * @return mixed
      */
     public function getQueueReadyCount()
@@ -101,6 +104,7 @@ class RabbitQueueBase
     }
 
     /**
+     *  消费消息
      *  consume
      */
     public function startConsume()
@@ -111,6 +115,7 @@ class RabbitQueueBase
     }
 
     /**
+     * 随机选择节点
      * RandServe
      */
     public function getRandServer()
@@ -124,6 +129,7 @@ class RabbitQueueBase
     }
 
     /**
+     * 消费者消息确认
      * @param $message
      */
     public static function ack($message)
@@ -132,11 +138,38 @@ class RabbitQueueBase
     }
 
     /**
+     * 消费者消息未确认
      * @param $message
      */
     public static function nack($message)
     {
         $message->delivery_info['channel']->basic_nack($message->delivery_info['delivery_tag']);
+    }
+
+    /**
+     * 开启生产者消息确认模式
+     * publish confirm
+     */
+    public function confirm()
+    {
+        $this->channel->confirm_select();
+    }
+
+    /**
+     * 阻塞等待消息确认
+     * wait_for_pending_acks
+     */
+    public function wait_for_pending_acks()
+    {
+        $this->channel->wait_for_pending_acks();
+    }
+
+    /**
+     * wait_for_pending_acks_returns
+     */
+    public function wait_for_pending_acks_returns()
+    {
+        $this->channel->wait_for_pending_acks_returns();
     }
 
     /**
@@ -147,4 +180,5 @@ class RabbitQueueBase
         $this->channel->close();
         $this->connection->close();
     }
+
 }

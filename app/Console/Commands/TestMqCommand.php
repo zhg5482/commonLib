@@ -76,6 +76,7 @@ class TestMqCommand extends Command
      * 生产者
      */
     public function publishMq() {
+        $this->rabbitMq->confirm();//开启发送确认方式
         $message = array(
             '__table' => 'account_record',
             'post_id' => 2323,
@@ -85,5 +86,6 @@ class TestMqCommand extends Command
             'coupon_amount' => 1200
         );
         $this->rabbitMq->addOne($message);
+        $this->rabbitMq->wait_for_pending_acks(); //阻塞等待消息确认
     }
 }
