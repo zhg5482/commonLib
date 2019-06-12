@@ -46,7 +46,7 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     参考 ： http://returnc.com/detail/3728
 ## rabbitMq
 ##### 模式： direct(路由匹配),fanout(把消息投递到附加在此交换器上的队列),topic(使来自不同的消息到达同一队列),headers(不常用)
-##### 消息确认 confirm  ack
+##### 消息确认 confirm[生产者确认]  ack[消费者确认] 持久化投递模式 持久化队列/交换器  镜像集群方式    rpc实现[生产者<->rabbitmq<->消费者]
 ##### 参考文档 https://www.rabbitmq.com/
 ##### 1.安装
     brew install rabbitmq
