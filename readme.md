@@ -44,9 +44,17 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     mongo 扩展安装
     composer jenssegers/mongodb 安装vender包
     参考 ： http://returnc.com/detail/3728
+##### 备注： mongod --port 27017 --dbpath /Users/zhg5482/data/db1
+         # mongo 操作
+             插入 db.news.insert({})
+             查询 db.news.find({})
+             删除 db.news.remove({})
+             distinct db.news.distinct("channel")
+             like  db.news.find({'create_time':/前/})
+             输出指定字段 第一项为条件 第二项为 字段  1 输出 0 不输出 db.news.find({'create_time':/前/},{source_host:1})
 ## rabbitMq
 ##### 模式： direct(路由匹配),fanout(把消息投递到附加在此交换器上的队列),topic(使来自不同的消息到达同一队列),headers(不常用)
-##### 消息确认 confirm[生产者确认]  ack[消费者确认] 持久化投递模式 持久化队列/交换器  镜像集群方式    rpc实现[生产者<->rabbitmq<->消费者]
+##### 消息确认 confirm[生产者确认]  ack[消费者确认] 
 ##### 参考文档 https://www.rabbitmq.com/
 ##### 1.安装
     brew install rabbitmq
@@ -56,7 +64,7 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
         "php-amqplib/php-amqplib": "2.6.*"
     }
 ##### 4.配置 config/queue.php
-   
+##### 5.注：1.保证消息可靠性：持久化投递模式 、持久化队列/交换器 、镜像集群方式 ;2.rpc实现[生产者<->rabbitmq<->消费者]
 ## FastDfs
 
 #####  参考文档：https://blog.csdn.net/u012979009/article/details/55052318
