@@ -26,21 +26,25 @@ return[
      *  request code
      */
     'code' => array(
-        'Default code' => '0',
-        'No authority' => '-1',
-        'Parameter deletion' => '-2',
-        'Incorrect parameter format' => '-3',
-        'Request was aborted' => '-4',
-        'Request success'  => '1',
-        'NotFound httpException'  => '-5',
+        'Default code' => 0,
+        'No authority' => -1,
+        'Parameter deletion' => -2,
+        'Incorrect parameter format' => -3,
+        'Request was aborted' => -4,
+        'Request success'  => 1,
+        'NotFound httpException'  => -5,
         // 其它 code
+
+        // vue code
+
+        // miniwechat code
     ),
 
     /**
      *  request code_message
      */
     'code_message' => array(
-        '0' => '未知操作',
+        '0' => '请求成功',
         '-1' => '无权限',
         '-2' => '请求参数缺失!',
         '-3' => '请求参数格式有误!',

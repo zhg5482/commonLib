@@ -16,6 +16,15 @@ class FastDfsHelper
 
     private static $instance = null;
 
+    //根据服务器地址连接
+    static $storage_server = array(
+        array('host' => '103.242.202.204', 'port' => 23000),
+    );
+
+    static $tracker_server = array(
+        array('host' => '121.42.30.64', 'port' => 22122),
+    );
+
     /**
      * FastDfsHelper constructor.
      */

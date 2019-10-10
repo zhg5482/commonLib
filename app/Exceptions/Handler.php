@@ -48,13 +48,13 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
-        if ($exception instanceof MethodNotAllowedHttpException) {
-            echoToJson('Request was aborted',array());
-        }
-
-        if($exception instanceof \Symfony\Component\Debug\Exception\FatalErrorException && !config('app.debug')) {//加上app.debug防止dubug关闭模式下暴露重要信息
-            echoToJson('Request was aborted',array());
-        }
+//        if ($exception instanceof MethodNotAllowedHttpException) {
+//            echoToJson('Request was aborted',array());
+//        }
+//
+//        if($exception instanceof \Symfony\Component\Debug\Exception\FatalErrorException && !config('app.debug')) {//加上app.debug防止dubug关闭模式下暴露重要信息
+//            echoToJson('Request was aborted',array());
+//        }
 
         if ($exception instanceof NotFoundHttpException) {
             echoToJson('NotFound httpException',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
@@ -80,9 +80,9 @@ class Handler extends ExceptionHandler
             echoToJson('No authority',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
         }
 
-        if ($exception->getStatusCode() != 200) {
-            echoToJson('No authority',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
-        }
+//        if ($exception->getStatusCode() != 200) {
+//            echoToJson('No authority',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
+//        }
         return parent::render($request, $exception);
     }
 }

@@ -16,8 +16,27 @@ $router->get('/', function () use ($router) {
 });
 
 /**
- * 版本 v1路由
+ * 通用v1路由
  */
 $router->group(['prefix'=>'api/v1'], function () use ($router) {
     require __DIR__.'/../routes/v1.php';
 });
+
+
+
+/**
+ * 小程序路由
+ */
+$router->group(['prefix'=>'api/miniWeChat/v1'], function () use ($router) {
+    require __DIR__ . '/../routes/miniWeChat/v1.php';
+});
+
+
+
+/**
+ * Vue 路由
+ */
+$router->group(['prefix'=>'api/vue/v1'], function () use ($router) {
+    require __DIR__ . '/../routes/vue/v1.php';
+});
+

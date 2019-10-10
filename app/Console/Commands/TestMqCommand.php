@@ -73,19 +73,24 @@ class TestMqCommand extends Command
     }
 
     /**
-     * 生产者
+     * 生产者 消息确认
      */
     public function publishMq() {
-        $this->rabbitMq->confirm();//开启发送确认方式
-        $message = array(
-            '__table' => 'account_record',
-            'post_id' => 2323,
-            'city_id' => 17,
-            'bid_amount' => 3000,
-            'cash_amount' => 1800,
-            'coupon_amount' => 1200
-        );
-        $this->rabbitMq->addOne($message);
-        $this->rabbitMq->wait_for_pending_acks(); //阻塞等待消息确认
+        try{
+            $this->rabbitMq->confirm();//开启发送确认方式
+            $message = array(
+                '__table' => 'account_record',
+                'post_id' => 2323,
+                'city_id' => 17,
+                'bid_amount' => 3000,
+                'cash_amount' => 1800,
+                'coupon_amount' => 1200
+            );
+            $this->rabbitMq->addOne($message);
+            $this->rabbitMq->wait_for_pending_acks(); //阻塞等待消息确认
+        } catch (\Exception $e) {
+            var_export($e->getMessage(),true);
+        }
+
     }
 }

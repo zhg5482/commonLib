@@ -9,11 +9,11 @@
 /**
  * 中间件 signVerification
  */
-$router->group(['middleware' => 'signVerification'], function () use ($router) {
-    $router->get('index', [
+//$router->group(['middleware' => 'signVerification'], function () use ($router) {
+    $router->post('index', [
         'as' => 'index', 'uses' => 'ExampleController@index'
     ]);
-});
+//});
 
 /**
  * throttle 访问频次控制 1 分钟 10 次
