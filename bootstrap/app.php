@@ -110,6 +110,24 @@ $app->withEloquent();
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
+/*
+ * 配置日志文件为每日[保存文件/保存到mongodb]
+ */
+//$app->configureMonologUsing(function (Monolog\Logger $monolog) {
+//    $mongoHandler = new \Monolog\Handler\MongoDBHandler(
+//        new \MongoDB\Client('mongodb://lumen:lumen@localhost:27017/lumen'), 'lumen', 'log'
+//    );
+//
+//    return $monolog->pushHandler($mongoHandler);
+//});
+//
+//$app->configureMonologUsing(function(Monolog\Logger $monoLog) use ($app){
+//    return $monoLog->pushHandler(
+//        new \Monolog\Handler\RotatingFileHandler($app->storagePath().'/logs/lumen.log',5)
+//    );
+//});
+
 //路由实现
 $app->router->group(['namespace' => 'App\Http\Controllers',], function ($router) {
     require __DIR__.'/../routes/web.php';
