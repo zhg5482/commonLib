@@ -30,9 +30,7 @@ class ExampleController extends Controller
 
     //
     public function index() {
-
-        $this->coupon();
-
+        $this->ffmPegTest();
     }
 
     private function uploadFileByTmpName() {
@@ -64,7 +62,10 @@ class ExampleController extends Controller
      * ffmpeg 测试
      */
     public function ffmPegTest() {
-         FFmPegHelper::getInstance()->audioTransform();
+         $filename = 'http://v.libraryplus.bjadks.com/target/video/201909/1080P/20190920183109_3281.mp4';
+         $filename = "/usr/local/var/www/commonlib/public/a.wmv";
+         $res = FFmPegHelper::getInstance()->videoTransform($filename,'b.mp4');
+         print_r($res);
     }
 
     /**
