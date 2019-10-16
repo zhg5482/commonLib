@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Lib\FastDfs\FileProcessHelper;
 use Illuminate\Http\Request;
 use App\Lib\FFmPeg\FFmPegHelper;
 use App\Lib\MongoDb\MongoDbHelper;
@@ -30,7 +31,12 @@ class ExampleController extends Controller
 
     //
     public function index() {
-        $this->ffmPegTest();
+
+        //$this->coupon();
+
+        $filename = "/usr/local/var/www/20190920183109_3281.mp4";
+        //$filename = 'http://v.libraryplus.bjadks.com/target/video/201909/1080P/20190920183109_3281.mp4';
+        echo FFmPegHelper::getInstance()->videoTransform1($filename);
     }
 
     private function uploadFileByTmpName() {

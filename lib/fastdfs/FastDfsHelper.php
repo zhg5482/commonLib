@@ -171,8 +171,9 @@ class FastDfsHelper
 
     /**
      * 删除文件
-     * @param string $group_name
-     * @param string $filename
+     * @param $group_name
+     * @param $filename
+     * @return mixed
      */
     public function delete($group_name, $filename){
         return fastdfs_storage_delete_file($group_name, $filename);
@@ -180,8 +181,9 @@ class FastDfsHelper
 
     /**
      * 下载文件
-     * @param string $group_name
-     * @param string $filename
+     * @param $group_name
+     * @param $filename
+     * @return mixed
      */
     public function down($group_name, $filename){
         $file_content = fastdfs_storage_download_file_to_buff($group_name, $filename);

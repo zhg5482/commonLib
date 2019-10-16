@@ -258,5 +258,8 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     
 ##  yar rpc框架
     http://pecl.php.net/package/yar
+
+##  gd 库扩展
+    curl -s http://php-osx.liip.ch/install.sh | bash -s  7.1.16
     
    
