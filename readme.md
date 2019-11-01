@@ -214,6 +214,18 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     参考文档 : https://www.cnblogs.com/peteremperor/p/6477743.html
     实例代码: App\Lib\FFmPeg\FFmPegHelper.php
     https://www.jianshu.com/p/cf1e61eb6fc8
+    https://github.com/PHP-FFMpeg/PHP-FFMpeg
+    https://blog.csdn.net/a9925/article/details/80334700
+    https://www.jianshu.com/p/9c07b730d1dc
+    https://www.cnblogs.com/xuan52rock/p/7929509.html
+    libfdk_aac not found : https://www.jianshu.com/p/b6ad3b706321
+    注：ffmpef libfdk-aac underfined 问题
+        重新编译: --prefix=/usr/local/Cellar/ffmpeg/4.1.1 --enable-shared --enable-pthreads --enable-version3 --enable-hardcoded-tables --enable-avresample --cc=clang --host-cflags='-I/Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home/include -I/Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home/include/darwin' --host-ldflags= --enable-ffplay --enable-gnutls --enable-gpl --enable-libaom --enable-libbluray --enable-libmp3lame --enable-libopus --enable-librubberband --enable-libsnappy --enable-libtesseract --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libx265 --enable-libxvid --enable-lzma --enable-libfontconfig --enable-libfreetype --enable-frei0r --enable-libass --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librtmp --enable-libspeex --enable-videotoolbox --disable-libjack --disable-indev=jack --enable-libaom --enable-libsoxr --enable-nonfree --enable-libfdk-aac
+        参考文档: https://www.cnblogs.com/standardzero/p/10931169.html
+                https://www.cnblogs.com/yaoz/p/6944942.html
+        https://codeday.me/bug/20180824/225364.html
+        GPU加速:https://www.jianshu.com/p/59da3d350488
+               https://blog.csdn.net/qq_29350001/article/details/75144665
 ## supervisor 进程监控
     官方文档 ： http://supervisord.org/  
     
@@ -255,11 +267,16 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
     
 ##  websocket[轮训 长轮训 websocket]
     https://blog.csdn.net/frank_good/article/details/50856585
+    https://www.cnblogs.com/mankii/p/11026607.html
+    https://blog.csdn.net/qq_27773645/article/details/94001996
     
 ##  yar rpc框架
     http://pecl.php.net/package/yar
 
 ##  gd 库扩展
     curl -s http://php-osx.liip.ch/install.sh | bash -s  7.1.16
+    
+##  中文转字母
+    https://blog.csdn.net/wz947324/article/details/79894710
     
    

@@ -34,9 +34,9 @@ class ExampleController extends Controller
 
         //$this->coupon();
 
-        $filename = "/usr/local/var/www/20190920183109_3281.mp4";
+        $filename = "/usr/local/var/www/b.mp4";
         //$filename = 'http://v.libraryplus.bjadks.com/target/video/201909/1080P/20190920183109_3281.mp4';
-        echo FFmPegHelper::getInstance()->videoTransform1($filename);
+        FFmPegHelper::getInstance()->videoTransType($filename,'b_s.avi') ;
     }
 
     private function uploadFileByTmpName() {

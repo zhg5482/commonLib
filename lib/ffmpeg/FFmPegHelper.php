@@ -10,15 +10,20 @@ namespace App\Lib\FFmPeg;
 define('FFMPEG_GET_CMD', '/usr/local/bin/ffmpeg -i "%s" 2>&1');
 define('FFMPEG_CONCAT_CMD', '/usr/local/bin/ffmpeg -f concat -i "%s" -c copy "%s" 2>&1');
 define('FFMPEG_TRANS_CMD', '/usr/local/bin/ffmpeg -i "%s" -vcodec "%s" "%s" 2>&1');
+define('FFMPEG_TRANS_FORM_CMD', '/usr/local/bin/ffmpeg -i "%s" "%s" 2>&1');
 define('FFMPEG_CUT_CMD', '/usr/local/bin/ffmpeg -ss "%s" -t "%s" -i "%s" -vcodec copy -acodec copy "%s" 2>&1');
 define('FFMPEG_WATER_CMD', '/usr/local/bin/ffmpeg -i "%s" -vf drawtext=fontcolor=white:text="%s":x="%s":y="%s":fontsize="%s":fontcolor="%s":shadowy="%s" "%s" 2>&1');
+define('FFMPEG_POW_CMD', '/usr/local/bin/ffmpeg -i "%s" -vf scale="%s" "%s" 2>&1');
+define('FFMPEG_CMD', '/usr/local/bin/ffmpeg -i "%s" -vcodec libx264 -preset ultrafast -b:v 2000k "%s" 2>&1');
 
 class FFmPegHelper {
 
     /**
      * @var
      */
-    public static $instance;
+    private static $instance;
+
+    private static $ffmpeg;
 
     /**
      * FFmPegHelper constructor.
@@ -32,6 +37,12 @@ class FFmPegHelper {
         if (null == self::$instance) {
             self::$instance =new self();
         }
+        self::$ffmpeg = \FFMpeg\FFMpeg::create(array(
+            'ffmpeg.binaries'  => '/usr/local/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/local/bin/ffprobe',
+            'timeout'          => 3600, // The timeout for the underlying process
+            'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
+        ));
         return self::$instance;
     }
 
@@ -141,7 +152,7 @@ class FFmPegHelper {
             $ret['play_time'] = $ret['seconds'] + $ret['start']; // 实际播放时间
         }
 
-        $ret['size'] = $this->get_file_size($file); // 视频文件大小
+        $ret['size'] = filesize($file); // 视频文件大小
         $video_info = iconv('gbk','utf8', $video_info);
         return array($ret, $video_info);
     }
@@ -193,6 +204,7 @@ class FFmPegHelper {
                 'bottom' => $bottom,
                 'right' => $right,
             ));
+        $video->save(new \FFMpeg\Format\Video\X264, 'export-x264.mp4');
     }
 
     /**
@@ -227,30 +239,68 @@ class FFmPegHelper {
     }
 
     /**
-     * 视频转码
-     * @param $videoPath
-     * @param $transPath
-     * @param string $trans_type h264、mpeg4、libxvid、wmv1、wmv2
+     * 视频格式转换
+     * @param $videoPath 源视频
+     * @param $transPath 转换后的视频
      */
-    public function videoTransform($videoPath,$transPath,$trans_type='mpeg4') {
+    public function videoTransform($videoPath,$transPath) {
         ob_start();
-        passthru(sprintf(FFMPEG_TRANS_CMD, $videoPath,$trans_type,$transPath),$res);echo 232;exit;
+        passthru(sprintf(FFMPEG_TRANS_FORM_CMD, $videoPath,$transPath),$res);
         print_r($res);
         ob_end_clean();
     }
 
-    public function videoTransform1($videoPath) {
-        $ffmpeg = \FFMpeg\FFMpeg::create(array(
-            'ffmpeg.binaries'  => '/usr/local/bin/ffmpeg',
-            'ffprobe.binaries' => '/usr/local/bin/ffprobe',
-            'timeout'          => 3600, // The timeout for the underlying process
-            'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
-        ));
-        $video = $ffmpeg->open($videoPath);
+    /**
+     * 视频分辨率
+     * @param $videoPath
+     * @param $powPath
+     * @param string $pow
+     */
+    public function videoResolvingPower($videoPath,$powPath,$pow='1080:1920') {
+        ob_start();
+        passthru(sprintf(FFMPEG_POW_CMD, $videoPath,$pow,$powPath),$res);
+        print_r($res);
+        ob_end_clean();
+    }
 
-        $video
-            ->save(new \FFMpeg\Format\Video\X264(), 'export-x264.mp4')
-            ->save(new \FFMpeg\Format\Video\WMV(), 'export-wmv.wmv')
-            ->save(new \FFMpeg\Format\Video\WebM(), 'export-webm.webm');
+    /**
+     * 视频转换格式
+     * h264、mpeg4、libxvid、wmv1、wmv2
+     * @param $videoPath
+     * @param $powPath
+     */
+    public function videoTransType($videoPath,$powPath) {
+        $video = self::$ffmpeg->open($videoPath);
+        $format = new \FFMpeg\Format\Video\X264();
+        $format->on('progress', function ($video, $format, $percentage) {
+            echo "$percentage % transcoded";
+        });
+
+        $format
+            ->setKiloBitrate(1000)
+            ->setAudioChannels(2)
+            ->setAudioKiloBitrate(256);
+
+        $video->save($format, $powPath);
+    }
+
+    /**
+     * m3u8
+     */
+    public function m3u8() {
+        //先将视频转换成视频ts文件
+        $str="ffmpeg -y -i video/1.mp4 -vcodec copy -acodec copy -vbsf h264_mp4toannexb video3/output.ts";
+        system($str,$res);
+        echo $res;
+
+        //将ts视频文件分割成视频流文件ts，并生成索引文件m3u8
+        $str="ffmpeg -i video3/output.ts  -c copy -map 0 -f segment -segment_list video3/index.m3u8 -segment_time 10 video3/video-%03d.ts";
+        system($str,$res);
+        echo $res;
+    }
+
+    public function clipVideo($videoPath) {
+        $video = self::$ffmpeg->open($videoPath);
+        $video->filters()->clip(\FFMpeg\Coordinate\TimeCode::fromSeconds(30), \FFMpeg\Coordinate\TimeCode::fromSeconds(15));
     }
 }
