@@ -114,6 +114,7 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
         tracker ：事件追踪服务    storage ： 数据存储服务(包括group和目录,一个group可以有多个storage)
         通过配置多个 tracker 负载均衡 ，然后寻址到 响应的 storage 上
     注:单机 ip 地址注意修改 启动完成后 需重启 php-fpm
+    文件上传进度:https://blog.csdn.net/u014391889/article/details/81206574
 ## Elasticsearch
 
 #####   1.安装
