@@ -280,4 +280,8 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 ##  中文转字母
     https://blog.csdn.net/wz947324/article/details/79894710
     
-   
+##  symfony 进程管理
+    https://symfony.com/doc/current/components/process.html#running-processes-asynchronously
+
+##  packagist[包库]symfony
+    https://packagist.org/packages

@@ -68,10 +68,8 @@ abstract class AbstractVideo extends Audio
     public function save(FormatInterface $format, $outputPathfile,$unique_key=0)
     {
         $passes = $this->buildCommand($format, $outputPathfile);
-
         $failure = null;
         $totalPasses = $format->getPasses();
-
         foreach ($passes as $pass => $passCommands) {
             try {
                 /** add listeners here */
@@ -92,7 +90,6 @@ abstract class AbstractVideo extends Audio
                     }
                     $listeners = $format->createProgressListener($this, $this->ffprobe, $pass + 1, $totalPasses, $duration,$unique_key);
                 }
-
                 $this->driver->command($passCommands, false, $listeners);
             } catch (ExecutionFailureException $e) {
                 $failure = $e;

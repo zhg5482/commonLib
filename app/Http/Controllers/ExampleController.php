@@ -34,8 +34,8 @@ class ExampleController extends Controller
 
     public function index() {
 
-        //$this->coupon();
-
+        $this->coupon();
+        exit;
         $filename = "/usr/local/var/www/testvideo/CRSHOPG0711144643031.mp4";
         //$filename = 'http://v.libraryplus.bjadks.com/target/video/201909/1080P/20190920183109_3281.mp4';
 
