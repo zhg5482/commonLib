@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\Test2MqCommand;
+use App\Console\Commands\TestCommand;
 use App\Console\Commands\TestMqCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
@@ -18,6 +19,7 @@ class Kernel extends ConsoleKernel
         // 注：test / test2 验证 消息投递模式 fanout / 消息确认  ack
         TestMqCommand::class,
         Test2MqCommand::class,
+        TestCommand::class
     ];
 
     /**

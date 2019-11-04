@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Lib\FastDfs\FileProcessHelper;
+use App\Lib\File\FFmpegHelper\Coordinate\Dimension;
+use App\Lib\File\FFmpegHelper\FFMpeg;
+use App\Lib\File\FFmpegHelper\Filters\Video\ResizeFilter;
+use App\Lib\File\FFmpegHelper\Format\Video\CuvId;
 use Illuminate\Http\Request;
 use App\Lib\FFmPeg\FFmPegHelper;
 use App\Lib\MongoDb\MongoDbHelper;
@@ -29,14 +32,35 @@ class ExampleController extends Controller
         parent::__construct($request);
     }
 
-    //
     public function index() {
 
         //$this->coupon();
 
-        $filename = "/usr/local/var/www/b.mp4";
+        $filename = "/usr/local/var/www/testvideo/CRSHOPG0711144643031.mp4";
         //$filename = 'http://v.libraryplus.bjadks.com/target/video/201909/1080P/20190920183109_3281.mp4';
-        FFmPegHelper::getInstance()->videoTransType($filename,'b_s.avi') ;
+
+        $ffmpeg = FFMpeg::create(array(
+            'ffmpeg.binaries'  => '/usr/local/bin/ffmpeg', // ffmpeg path
+            'ffprobe.binaries' => '/usr/local/bin/ffprobe',// ffprobe path
+            'timeout'          => 3600, // The timeout for the underlying process
+            'ffmpeg.threads'   => 24,   // The number of threads that FFMpeg should use
+        ));
+
+
+        $video = $ffmpeg->open($filename);
+        //$format = new X264('libfdk_aac');
+        $format = new CuvId('videotoolbox','h264_videotoolbox','');
+
+        $format->on('progress', function ($video, $format, $percentage){
+            echo $percentage.' ';
+        });
+
+        $video->filters()
+            ->resize(new Dimension(720, 450),ResizeFilter::RESIZEMODE_INSET, true)
+            ->synchronize();
+
+        $format->setKiloBitrate(450);
+        $res = $video->save($format, 'a.mp4');
     }
 
     private function uploadFileByTmpName() {
