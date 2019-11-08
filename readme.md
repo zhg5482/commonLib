@@ -285,3 +285,6 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 ##  packagist[包库]symfony
     https://packagist.org/packages
+
+##  多进程 pcntl
+    https://www.cnblogs.com/itsuibi/p/11184396.html
