@@ -161,7 +161,7 @@ return [
 
         'common' => array(
             'servers' => array(
-                array('host' => '127.0.0.1', 'port' => 6379, 'weight' => 1, 'password' => '','timeout' => 3)
+                array('host' => '127.0.0.1', 'port' => 6379, 'weight' => 1, 'password' => 'liuwt','timeout' => 3)
             ),
         ),
     ],

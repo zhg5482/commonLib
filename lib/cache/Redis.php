@@ -54,6 +54,9 @@ class Redis extends BaseCache
         }
         $this->redisObj = new \redis();
         $this->redisObj->connect($servers[0]['host'] , $servers[0]['port'], $servers[0]['timeout']);
+        if (isset($servers[0]['password']) && !empty($servers[0]['password'])) {
+            $this->redisObj->auth($servers[0]['password']);
+        }
     }
 
     /**

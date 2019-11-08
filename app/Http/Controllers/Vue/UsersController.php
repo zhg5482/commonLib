@@ -43,8 +43,7 @@ class UsersController extends Controller
     public function login() {
         $username = trim($this->request->input('username',''));
         $password = trim($this->request->input('password',''));
-        if (empty($username) || empty($password))
-        {
+        if (empty($username) || empty($password)) {
             echoToJson('No authority',array());
         }
 
@@ -57,8 +56,7 @@ class UsersController extends Controller
             echoToJson('No authority',array());
         }
         $password2 = password($password,$userInfo->encrypt);
-        if ($userInfo->password != $password2) //密码错误
-        {
+        if ($userInfo->password != $password2) {//密码错误
             echoToJson('No authority',array());
         }
 
@@ -73,9 +71,9 @@ class UsersController extends Controller
             unset($userInfoArr['status'],$userInfoArr['password'],$userInfoArr['encrypt']);
             $userInfo = (object)array_merge($userInfoArr,(array)$userInfo_extends);
         }
+        $userInfo->client_ip = $this->request->getClientIp();
         // redis 保存用户信息
-        if (!$this->redis->setex('passport_'.$userInfo->user_id, self::PASSPORT_EXPIRE_TIME, json_encode($userInfo)))
-        {
+        if (!$this->redis->setex('passport_'.$userInfo->user_id, self::PASSPORT_EXPIRE_TIME, json_encode($userInfo))) {
             echoToJson('No authority',array());
         }
         $token = authcode($userInfo->user_id, 'ENCODE');
@@ -155,6 +153,7 @@ class UsersController extends Controller
         if (!isset($data['id'])) {
             echoToJson('No authority',array());
         }
+        // todo:: 更新redis 用户信息
         $res = $this->usersService->updateUser($data);
         if (!$res) {
             echoToJson('No authority',array());
@@ -177,7 +176,7 @@ class UsersController extends Controller
             echoToJson('No authority',array());
         }
         $fileName = config('app')['fileUrl'].'/'.$ret['group_name'].'/'.$ret['filename'];
-
+        //todo:: 更新redis 用户信息
         $res = $this->usersService->updateAvatar($userId,$fileName);
         if (!$res) {
             echoToJson('No authority',array());
@@ -208,6 +207,7 @@ class UsersController extends Controller
         if (!isset($data['user_id'])) {
             echoToJson('No authority',array());
         }
+        // todo:: 更新redis 用户信息
         $res = $this->usersService->updateUserInfoExtends($data);
         if (!$res) { //更新失败
             echoToJson('No authority',array());

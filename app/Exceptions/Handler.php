@@ -80,9 +80,9 @@ class Handler extends ExceptionHandler
             echoToJson('No authority',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
         }
 
-//        if ($exception->getStatusCode() != 200) {
-//            echoToJson('No authority',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
-//        }
+        if ($exception->getStatusCode() != 200) {
+            echoToJson('Request method failed',array('code'=>$exception->getCode(),'message'=>$exception->getMessage()));
+        }
         return parent::render($request, $exception);
     }
 }

@@ -33,6 +33,7 @@ return[
         'Request was aborted' => -4,
         'Request success'  => 1,
         'NotFound httpException'  => -5,
+        'Request method failed'  => -6,
         // 其它 code
 
         // vue code
@@ -50,6 +51,7 @@ return[
         '-3' => '请求参数格式有误!',
         '-4' => '请求失败!',
         '-5' => '请求路由有误!',
+        '-6' => '请求方式有误!',
         '1'  => '请求成功!',
         // 其它 code_message
     )
