@@ -81,12 +81,12 @@ $app->routeMiddleware([
 ]);
 /*
 |--------------------------------------------------------------------------
-| Register Service Providers
+| Register Service Providers 登记服务提供商
 |--------------------------------------------------------------------------
 |
-| Here we will register all of the application's service providers which
-| are used to bind services into the container. Service providers are
-| totally optional, so you are not required to uncomment this line.
+| Here we will register all of the application's service providers which 这里我们将登记所有的应用服务提供商
+| are used to bind services into the container. Service providers are 用于绑定到容器服务。服务提供商
+| totally optional, so you are not required to uncomment this line. 完全可选的，所以你不需要注释掉这行。
 |
 */
 

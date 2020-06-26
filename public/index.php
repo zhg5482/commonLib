@@ -1,24 +1,16 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Create The Application
-|--------------------------------------------------------------------------
-|
-| First we need to get an application instance. This creates an instance
-| of the application / container and bootstraps the application so it
-| is ready to receive HTTP / Console requests from the environment.
-|
-*/
-
+header('Content-Type: application/json; charset=utf-8');
 /*
 |--------------------------------------------------------------------------
 | Create The Application(创建应用程序)
 |--------------------------------------------------------------------------
-| 首先我们需要一个应用实例
-| 这将创建一个应用程序的实例/容器和应用程序准备好接受HTTP/控制台从环境要求
+|
+| First we need to get an application instance. This creates an instance 首先我们需要一个应用实例
+| of the application / container and bootstraps the application so it 这将创建一个应用程序的实例/容器和应用程序准备好接受HTTP/控制台从环境要求
+| is ready to receive HTTP / Console requests from the environment.
 |
 */
+
 $app = require __DIR__.'/../bootstrap/app.php';
 
 /*

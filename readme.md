@@ -288,3 +288,17 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 ##  多进程 pcntl
     https://www.cnblogs.com/itsuibi/p/11184396.html
+##  自动加载
+    https://www.cnblogs.com/guangye/p/10088279.html
+## 源码
+    https://www.cnblogs.com/cxscode/p/7567744.html
+## laravel 管理平台
+    https://laravel-admin.org
+## gitlab
+    https://www.cnblogs.com/yanjieli/p/10605381.html
+## 创建git仓库
+    https://www.liaoxuefeng.com/wiki/896043488029600/899998870925664
+## learnku
+    https://learnku.com/articles/29622
+## layer
+    https://layer.layui.com/
